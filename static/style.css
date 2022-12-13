@@ -1,0 +1,72 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    padding: 1em;
+    margin: 0px;
+}
+
+.grid {
+    display: grid;
+    grid-template-areas:
+    'key tension notes seed seed'
+    'key tension notes measure measure'
+    'key tension notes generate generate'
+    'output output output output output'
+    'output output output output output'
+    'controls controls controls controls controls';
+
+    grid-gap: 1.5em;
+}
+
+.box {
+    border: solid black 1px;
+    border-radius: 5px;
+    min-width: 10em;
+    min-height: 5em;
+}
+
+.box-name {
+    transform: translateY(-2.5em);
+}
+
+
+
+.key {
+    grid-area: key;
+}
+.tension {
+    grid-area: tension;
+}
+.notes {
+    grid-area: notes;
+}
+.seed {
+    grid-area: seed;
+}
+.measure {
+    grid-area: measure;
+}
+.generate {
+    grid-area: generate;
+}
+.output {
+    grid-area: output;
+}
+.controls {
+    grid-area: controls;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .8em;
+}
