@@ -38,6 +38,7 @@
 }
 
 .box {
+    position: relative;
     background-color: rgba(0, 0, 0, .1);
 /*    border: solid white 1px;*/
     border-radius: 5px;
@@ -49,7 +50,9 @@
     text-align: center;
 }
 .box-name {
-    transform: translateY(-2.5em);
+    position: absolute;
+    top: -2.5em;
+/*    transform: translateY(-2.5em);*/
 }
 label {
     padding: 5px;
@@ -60,6 +63,18 @@ label {
 }
 
 
+.note {
+    background-color: ;
+    width: 100%;
+    font-size: 1em;
+    padding: 0px;
+    margin: 0px;
+}
+.note:hover {
+    cursor: pointer;
+    background-color: white;
+    padding: 3px;
+}
 .third-button {
     width: 30%;
 }

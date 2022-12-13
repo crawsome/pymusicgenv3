@@ -12,6 +12,9 @@
         <div class="grid">
             <div class="box key">
                 <p class="box-name">Key</p>
+                {% for note in notes %}
+                    <p class="note" onclick="selectNote(this)">{{ note }}</p>
+                {% endfor %}
                 
             </div>
             <div class="box tension">
@@ -107,5 +110,17 @@
         </div>
         
     </div>
+
+    <script>
+
+        function selectNote(e){
+            var notes = document.querySelectorAll('.note');
+            notes.forEach(note => {
+                note.style.backgroundColor = "";
+            });
+            e.style.backgroundColor = "white"
+        }
+
+    </script>
 </body>
 </html>
