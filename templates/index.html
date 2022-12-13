@@ -12,27 +12,97 @@
         <div class="grid">
             <div class="box key">
                 <p class="box-name">Key</p>
+                
             </div>
             <div class="box tension">
                 <p class="box-name">Tension</p>
             </div>
             <div class="box notes">
                 <p class="box-name">Note Duration Freq.</p>
+
+                <div class="mini-grid">
+                    <div>
+                        <input type="checkbox" id="chord" name="chord" value="">
+                        <label for="chord">Chord</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+        
+                    <div>
+                        <input type="checkbox" id="32nd" name="32nd" value="">
+                        <label for="32nd">32nd</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+              
+                    <div>
+                        <input type="checkbox" id="sixteenth" name="sixteenth" value="">
+                        <label for="sixteenth">Sixteenth</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    
+                    <div>
+                        <input type="checkbox" id="Eighth" name="Eighth" value="">
+                        <label for="Eighth">Eighth</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+
+                    <div>
+                        <input type="checkbox" id="Quarter" name="Quarter" value="">
+                        <label for="Quarter">Quarter</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    
+                    <div>
+                        <input type="checkbox" id="Half" name="Half" value="">
+                        <label for="Half">Half</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    
+                    <div>
+                        <input type="checkbox" id="Whole" name="Whole" value="">
+                        <label for="Whole">Whole</label>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                </div>
+
             </div>
             <div class="box seed">
                 <p class="box-name">Seed (For RNG)</p>
+                <div class="center">
+                    <button class="full-button">Random Seed</button>
+                    <input type="text" name="random">
+                </div>
+
             </div>
             <div class="box measure">
                 <p class="box-name">Measure Settings</p>
+
+                <label>Beats/measure</label><input type="number" id="quantity" name="quantity" min="1" max="12"><br>
+
+                <label>Beats/minute</label><input type="number" id="quantity" name="quantity" min="1" max="300"><br>
             </div>
             <div class="box generate">
                 <p class="box-name">Generate/Randomize/Reset</p>
+
+                <button>Generate!</button>
+                <button>Randomize</button>
+                <button>Reset Selection</button>
             </div>
             <div class="box output">
                 <p class="box-name">Output Area</p>
             </div>
             <div class="box controls">
                 <p class="box-name">Controls</p>
+                <div class="center">
+                    <button class="third-button">Play Song</button>
+                    <button class="third-button">Insert Measure into Song</button>
+                    <button class="third-button">Delete Measure from Song</button>
+                    
+                    <br>
+
+                    <button class="third-button"><- Back One Measure</button>
+                    <button class="third-button">Play Measure</button>
+                    <button class="third-button">Forward One Measure -></button>
+                </div>
             </div>
         </div>
         

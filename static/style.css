@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
 .item {
@@ -16,6 +17,10 @@
 }
 
 .grid {
+    background-color: rgba(0, 0, 0, .1);
+    padding: 2em;
+    border-radius: 3px;
+
     display: grid;
     grid-template-areas:
     'key tension notes seed seed'
@@ -24,20 +29,44 @@
     'output output output output output'
     'output output output output output'
     'controls controls controls controls controls';
-
     grid-gap: 1.5em;
 }
 
+.mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .box {
-    border: solid black 1px;
+    background-color: rgba(0, 0, 0, .1);
+/*    border: solid white 1px;*/
     border-radius: 5px;
     min-width: 10em;
     min-height: 5em;
+    padding: 3px;
 }
-
+.center {
+    text-align: center;
+}
 .box-name {
     transform: translateY(-2.5em);
 }
+label {
+    padding: 5px;
+}
+
+#quantity{
+    padding: 3px 5px 3px 5px;
+}
+
+
+.third-button {
+    width: 30%;
+}
+.full-button {
+    width: 95%;
+}
+
 
 
 
@@ -69,4 +98,5 @@
 p {
     font-family: 'Montserrat', sans-serif;
     font-size: .8em;
+
 }
