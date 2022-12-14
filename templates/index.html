@@ -19,6 +19,9 @@
             </div>
             <div class="box tension">
                 <p class="box-name">Tension</p>
+                {% for tension in tensions %}
+                    <p class="note" onclick="selectNote(this)">{{ tension }}</p>
+                {% endfor %}
             </div>
             <div class="box notes">
                 <p class="box-name">Note Duration Freq.</p>

@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('index.html', notes=name_to_int_distance.keys())
+    return render_template('index.html', notes=name_to_int_distance.keys(), tensions=tensions)
 
 @app.route("/random_seed")
 def random_seed():
