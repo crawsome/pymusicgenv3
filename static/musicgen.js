@@ -22,7 +22,7 @@ function selectNote(e){
 }
 
 // Handler for handling when user selects a tension
-function selectNote(e){
+function selectTension(e){
     var tensions = document.querySelectorAll('.tension');
     tensions.forEach(tension => {
         tension.style.backgroundColor = "";
