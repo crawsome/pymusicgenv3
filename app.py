@@ -16,8 +16,20 @@ def home():
 def generate():
     musicGen.new_measure()
 
-    return "success"
+    return ""
 
+
+@app.route("/update_frequencies", methods=["POST"])
+def update_frequencies():
+    name = request.form['name']
+    freq = request.form['freq']
+    active = request.form['active']
+
+
+    musicGen.durations_freq[name]['checked'] = active
+    musicGen.durations_freq[name]['frequency'] = freq
+
+    return jsonify({name:musicGen.durations_freq[name]})
 
 @app.route("/update_bpmin", methods=["POST"])
 def update_bpmin():
@@ -43,16 +55,19 @@ def update_tension():
 @app.route('/select_duration', methods=["POST"])
 def select_duration():
     name = request.form['name']
-    active = request.form['isActive']
-    musicGen.durations_freq.get(name)['isChecked'] = active 
+    active = request.form['active']
+    freq = request.form['frequency']
 
-    return jsonify({name: musicGen.durations_freq.get(name)})
+    musicGen.durations_freq[name]['checked'] = active 
+    musicGen.durations_freq[name]['frequency'] = freq 
+
+    return jsonify(musicGen.durations_freq)
 
 @app.route("/random_seed")
 def random_seed():
     musicGen.random_seed()
     return str(musicGen.seed)
-    
+
 if __name__ == "__main__":
     musicGen = PyMusicGen()
     app.run(debug=True)

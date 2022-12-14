@@ -6,6 +6,7 @@ function generate() {
     // Update values
     updateBeatsPerMeasure();
     updateBeatsPerMinute();
+    updateFrequencies();
 
     // Call generate function in backend
     $.post('/generate', {}, function (data) {
@@ -19,11 +20,17 @@ function generate() {
 function updateFrequencies() {
     var frequencies = document.querySelectorAll('.frequency');
 
-    // Update frequency in backend
-    $.post('/update_frequencies', {"bpm":e.value}, function (data) {
-        // Do nothing for now
+    frequencies.forEach(frequency => {
+        var label = frequency.previousElementSibling.children[1];
+        var checkbox = frequency.previousElementSibling.children[0];
+        // Update frequency in backend
+        $.post('/update_frequencies', {"name":label.textContent,"freq":frequency.value,"active":checkbox.checked}, function (data) {
+            // Do nothing for now
+            
+        });
         
     });
+    
 }
 
 // Update beats per minute in backend
@@ -42,7 +49,7 @@ function updateBeatsPerMeasure() {
     // Update beats per measure in backend
     $.post('/update_bpmeas', {"bpm":e.value}, function (data) {
         // Do nothing for now
-        console.log(data);
+        
     });
 }
 
@@ -78,8 +85,9 @@ function selectTension(e){
 
 // Handler for selecting a note duration
 function selectDuration(e) {
+    var freq = e.parentElement.nextElementSibling.value
     // Update duration in backend
-    $.post('/select_duration', {'isActive':e.checked, 'name':e.name}, function (data) {
+    $.post('/select_duration', {'active':e.checked, 'name':e.name, 'frequency':freq}, function (data) {
         // Do nothing for now
 
     });
@@ -172,7 +180,7 @@ function randomFrequencies() {
     frequencies.forEach(frequency => {
         var checkbox = frequency.previousElementSibling.children[0];
         if (checkbox.checked) {
-            if (checkbox.id == "chord" || checkbox.id == "32nd") {
+            if (checkbox.id == "Chord" || checkbox.id == "32nd") {
                 frequency.value = Math.floor(Math.random()*4) + 1;
             } else if (checkbox.id == "Sixteenth" || checkbox.id == "Eighth" || checkbox.id == "Quarter") {
                 frequency.value = Math.floor(Math.random()*8) + 1;
