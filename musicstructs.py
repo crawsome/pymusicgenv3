@@ -21,3 +21,5 @@ toneref = {'C1': 24, 'Db1': 25, 'D1': 26, 'Eb1': 27, 'E1': 28, 'F1': 29, 'F#1': 
            'C6': 84, 'Db6': 85, 'D6': 86, 'Eb6': 87, 'E6': 88, 'F6': 89, 'F#6': 90, 'G6': 91, 'Ab6': 92, 'A6': 93,
            'Bb6': 94, 'B6': 95, 'C7': 96, 'Db7': 97, 'D7': 98, 'Eb7': 99, 'E7': 100, 'F7': 101, 'F#7': 102, 'G7': 103,
            'Ab7': 104, 'A7': 105, 'Bb7': 106, 'B7': 107, 'C8': 108}
+
+tensions = ['Major', 'Natural Minor', 'Harmonic Minor', 'Melodic Minor', 'Dorian Mode', 'Mixolydian Mode', 'Phrygian', 'Pentatonic', 'Minor Pentatonic']
