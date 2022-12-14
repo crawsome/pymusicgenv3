@@ -10,10 +10,10 @@
         <h1 class="item">PyMusicGen</h1>
         
         <div class="grid">
-            <div class="box key">
+            <div class="box keys">
                 <p class="box-name">Key</p>
-                {% for note in notes %}
-                    <p class="note" onclick="selectNote(this)" data-value="{{note}}">{{ note }}</p>
+                {% for key in keys %}
+                    <p class="key" onclick="selectKey(this)" data-value="{{key}}">{{ key }}</p>
                 {% endfor %}
                 
             </div>

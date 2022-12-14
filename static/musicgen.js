@@ -13,8 +13,8 @@ $("button#random-seed").click(function() {
 
 
 // Handler for handling when user selects a key
-function selectNote(e){
-    var notes = document.querySelectorAll('.note');
+function selectKey(e){
+    var notes = document.querySelectorAll('.key');
     notes.forEach(note => {
         note.style.backgroundColor = "";
     });
@@ -40,4 +40,14 @@ function selectTension(e){
         // Do nothing for now
        
     });
+}
+
+
+
+// Randomize functions
+// -------------------
+
+// Randomize key
+function randomKey() {
+    var keys = document.querySelectorAll('.note')
 }

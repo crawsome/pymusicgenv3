@@ -23,9 +23,9 @@
 
     display: grid;
     grid-template-areas:
-    'key tensions notes seed seed'
-    'key tensions notes measure measure'
-    'key tensions notes generate generate'
+    'keys tensions notes seed seed'
+    'keys tensions notes measure measure'
+    'keys tensions notes generate generate'
     'output output output output output'
     'output output output output output'
     'controls controls controls controls controls';
@@ -63,14 +63,14 @@ label {
 }
 
 
-.note, .tension {
+.key, .tension {
     background-color: ;
     width: 100%;
     font-size: 1em;
     padding: 0px;
     margin: 0px;
 }
-.note:hover, .tension:hover {
+.key:hover, .tension:hover {
     cursor: pointer;
     background-color: white;
     padding: 3px;
@@ -85,8 +85,8 @@ label {
 
 
 
-.key {
-    grid-area: key;
+.keys {
+    grid-area: keys;
 }
 .tensions {
     grid-area: tensions;
