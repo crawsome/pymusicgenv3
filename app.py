@@ -12,10 +12,22 @@ app = Flask(__name__)
 def home():
     return render_template('index.html', keys=name_to_int_distance.keys(), tensions=tensions)
 
-@app.route("/random_seed")
-def random_seed():
-    musicGen.random_seed()
-    return str(musicGen.seed)
+@app.route('/generate', methods=["POST"])
+def generate():
+    musicGen.new_measure()
+
+    return "success"
+
+
+@app.route("/update_bpmin", methods=["POST"])
+def update_bpmin():
+    musicGen.beatsperminute = request.form['bpm']
+    return str(musicGen.beatsperminute)
+
+@app.route("/update_bpmeas", methods=["POST"])
+def update_bpmeas():
+    musicGen.beatspermeasure = request.form['bpm']
+    return str(musicGen.beatspermeasure)
 
 @app.route('/update_key', methods=["POST"])
 def update_key():
@@ -36,6 +48,11 @@ def select_duration():
 
     return jsonify({name: musicGen.durations_freq.get(name)})
 
+@app.route("/random_seed")
+def random_seed():
+    musicGen.random_seed()
+    return str(musicGen.seed)
+    
 if __name__ == "__main__":
     musicGen = PyMusicGen()
     app.run(debug=True)

@@ -627,22 +627,22 @@ class PyMusicGen():
 
     # Make a measure with the given data
     def new_measure(self):
-        # Check the data and pass error to the user
-        msg = None
-        try:
-            msg = self.check_fields()
-        except Exception as e:
-            logging.exception('check_fields() failed: ' + str(e))
+        # # Check the data and pass error to the user
+        # msg = None
+        # try:
+        #     msg = self.check_fields()
+        # except Exception as e:
+        #     logging.exception('check_fields() failed: ' + str(e))
 
-        if msg:
-            self.popup_window(msg)
-            return
+        # if msg:
+        #     self.popup_window(msg)
+        #     return
 
         # Update the fields on-generate
-        try:
-            self.get_fields()
-        except Exception as e:
-            logging.exception('get_fields() failed: ' + str(e))
+        # try:
+        #     self.get_fields()
+        # except Exception as e:
+        #     logging.exception('get_fields() failed: ' + str(e))
 
         # Create our scale
         try:

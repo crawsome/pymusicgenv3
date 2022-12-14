@@ -1,6 +1,50 @@
 
 
 
+// Main generate function
+function generate() {
+    // Update values
+    updateBeatsPerMeasure();
+    updateBeatsPerMinute();
+
+    // Call generate function in backend
+    $.post('/generate', {}, function (data) {
+        // Do nothing for now
+        console.log(data);
+    });
+}
+
+
+// Update note frequencies in backend
+function updateFrequencies() {
+    var frequencies = document.querySelectorAll('.frequency');
+
+    // Update frequency in backend
+    $.post('/update_frequencies', {"bpm":e.value}, function (data) {
+        // Do nothing for now
+        
+    });
+}
+
+// Update beats per minute in backend
+function updateBeatsPerMinute() {
+    var e = document.getElementById('bpmin');
+    // Update beats per minute in backend
+    $.post('/update_bpmin', {"bpm":e.value}, function (data) {
+        // Do nothing for now
+        
+    });
+}
+
+// Update beats per measure in backend
+function updateBeatsPerMeasure() {
+    var e = document.getElementById('bpmeas');
+    // Update beats per measure in backend
+    $.post('/update_bpmeas', {"bpm":e.value}, function (data) {
+        // Do nothing for now
+        console.log(data);
+    });
+}
 
 // Handler for handling when user selects a key
 function selectKey(e){
