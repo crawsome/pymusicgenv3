@@ -25,10 +25,9 @@ def update_frequencies():
     freq = request.form['freq']
     active = request.form['active']
 
-
-    musicGen.durations_freq[name]['checked'] = active
-    musicGen.durations_freq[name]['frequency'] = freq
-
+    musicGen.durations_freq[name]['checked'] = active == 'true'
+    musicGen.durations_freq[name]['frequency'] = int(freq)
+   
     return jsonify({name:musicGen.durations_freq[name]})
 
 @app.route("/update_bpmin", methods=["POST"])

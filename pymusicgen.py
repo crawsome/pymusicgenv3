@@ -241,13 +241,13 @@ class PyMusicGen():
 
     # get all the note hold durations from user's selections
     def get_durations(self):
-        _chord = [.0 for x in range(self.spinbox_chord.value())] if self.notebox_chord.isChecked() else []  # chord
-        _32nd = [.125 for x in range(self.spinbox_32.value())] if self.notebox_32.isChecked() else []  # 32nd
-        _16th = [.25 for x in range(self.spinbox_16.value())] if self.notebox_16.isChecked() else []  # 16th
-        _8th = [.5 for x in range(self.spinbox_8.value())] if self.notebox_8.isChecked() else []  # eighth
-        _4s = [1 for x in range(self.spinbox_4.value())] if self.notebox_4.isChecked() else []  # quarter
-        _2s = [2 for x in range(self.spinbox_2.value())] if self.notebox_2.isChecked() else []  # half
-        _1s = [4 for x in range(self.spinbox_1.value())] if self.notebox_1.isChecked() else []  # whole
+        _chord = [.0 for x in range(self.durations_freq['Chord']['frequency'])] if self.durations_freq['Chord']['checked'] else []  # chord
+        _32nd = [.125 for x in range(self.durations_freq['32nd']['frequency'])] if self.durations_freq['32nd']['checked'] else []  # 32nd
+        _16th = [.25 for x in range(self.durations_freq['Sixteenth']['frequency'])] if self.durations_freq['Sixteenth']['checked'] else []  # 16th
+        _8th = [.5 for x in range(self.durations_freq['Eighth']['frequency'])] if self.durations_freq['Eighth']['checked'] else []  # eighth
+        _4s = [1 for x in range(self.durations_freq['Quarter']['frequency'])] if self.durations_freq['Quarter']['checked'] else []  # quarter
+        _2s = [2 for x in range(self.durations_freq['Half']['frequency'])] if self.durations_freq['Half']['checked'] else []  # half
+        _1s = [4 for x in range(self.durations_freq['Whole']['frequency'])] if self.durations_freq['Whole']['checked'] else []  # whole
         return _chord + _32nd + _16th + _8th + _4s + _2s + _1s
 
     # Assign all user fields
@@ -645,6 +645,8 @@ class PyMusicGen():
         #     logging.exception('get_fields() failed: ' + str(e))
 
         # Create our scale
+
+        self.durations = self.get_durations()
         try:
             self.makescale()
         except Exception as e:
@@ -657,14 +659,14 @@ class PyMusicGen():
             logging.exception('make_notetimes() failed: ' + str(e))
 
         # Display the measure on the screen
-        try:
-            self.show_measure()
-        except Exception as e:
-            logging.exception('{} {}'.format(self.thismeasure_notes, len(self.thismeasure_notes)))
-            logging.exception('{} {} \n{}'.format(self.thismeasure_times, len(self.thismeasure_times),
-                                                  (str(sum(self.thismeasure_times)) + 'should equal' + str(
-                                                      self.beatspermeasure))))
-            logging.exception('show measure failed ' + str(e))
+        # try:
+        #     self.show_measure()
+        # except Exception as e:
+        #     logging.exception('{} {}'.format(self.thismeasure_notes, len(self.thismeasure_notes)))
+        #     logging.exception('{} {} \n{}'.format(self.thismeasure_times, len(self.thismeasure_times),
+        #                                           (str(sum(self.thismeasure_times)) + 'should equal' + str(
+        #                                               self.beatspermeasure))))
+        #     logging.exception('show measure failed ' + str(e))
 
     # get range difference between two notes
     def getrangecount(self, a, b):
