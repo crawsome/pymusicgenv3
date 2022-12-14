@@ -37,12 +37,14 @@ function selectDuration(e) {
     // Update duration in backend
     $.post('/select_duration', {'isActive':e.checked, 'name':e.name}, function (data) {
         // Do nothing for now
-        
+
     });
     
 }
 
 
+
+// -------------------
 // Randomize functions
 // -------------------
 
