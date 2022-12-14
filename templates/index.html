@@ -71,8 +71,8 @@
             <div class="box seed">
                 <p class="box-name">Seed (For RNG)</p>
                 <div class="center">
-                    <button class="full-button">Random Seed</button>
-                    <input type="text" name="random">
+                    <button id="random-seed" class="full-button">Random Seed</button>
+                    <input type="text" id="random">
                 </div>
 
             </div>
@@ -110,8 +110,18 @@
         </div>
         
     </div>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
+
+        // Handler to get random seed
+        $("button#random-seed").click(function() { 
+            $.get('/random_seed', function (data) {
+                var random = document.getElementById("random");
+                random.value = data;
+            });
+            // If you want to post to the backend instead, do
+            // $.post('/button');
+        });
 
         function selectNote(e){
             var notes = document.querySelectorAll('.note');
