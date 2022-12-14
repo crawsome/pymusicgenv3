@@ -54,6 +54,8 @@ function randomizeAll () {
     randomTension();
     randomNoteDuration();
     randomSeed();
+    randomBeatPerMinute();
+    randomBeatPerMeasure();
 }
 
 // Randomize key
@@ -93,6 +95,23 @@ function randomSeed(e) {
         var random = document.getElementById("random");
         random.value = data;
     });
+}
+
+// Generate random beats/measure
+function randomBeatPerMeasure() {
+    const beats_per_meas = [3, 4, 6, 8];
+    var i = Math.floor(Math.random() * beats_per_meas.length)
+    var box = document.getElementById('bpmeas');
+    box.value = beats_per_meas[i];
+    
+}
+
+// Generate random beats/minute
+function randomBeatPerMinute() {
+    const beats_per_min = [60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 180, 200, 220];
+    var i = Math.floor(Math.random() * beats_per_min.length)
+    var box = document.getElementById("bpmin");
+    box.value = beats_per_min[i];
 }
 
 
