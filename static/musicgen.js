@@ -129,13 +129,13 @@ function randomFrequencies() {
         var checkbox = frequency.previousElementSibling.children[0];
         if (checkbox.checked) {
             if (checkbox.id == "chord" || checkbox.id == "32nd") {
-                frequency.value = Math.floor(Math.random()*4);
+                frequency.value = Math.floor(Math.random()*4) + 1;
             } else if (checkbox.id == "Sixteenth" || checkbox.id == "Eighth" || checkbox.id == "Quarter") {
-                frequency.value = Math.floor(Math.random()*8);
+                frequency.value = Math.floor(Math.random()*8) + 1;
             } else if (checkbox.id == "Half") {
-                frequency.value = Math.floor(Math.random()*3);
+                frequency.value = Math.floor(Math.random()*3) + 1;
             } else if (checkbox.id == "Whole") {
-                frequency.value = Math.floor(Math.random()*2);
+                frequency.value = Math.floor(Math.random()*2) + 1;
             }
         } else {
             checkbox.checked = false;
