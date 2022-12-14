@@ -68,7 +68,7 @@ function resetAll() {
         duration.checked = false;
     });
     frequencies.forEach(frequency => {
-        frequency.value = "";
+        frequency.value = 0;
     });
 
 }
@@ -139,7 +139,7 @@ function randomFrequencies() {
             }
         } else {
             checkbox.checked = false;
-            frequency.value = "";
+            frequency.value = 0;
         }
     });
 
