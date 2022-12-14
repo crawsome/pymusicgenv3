@@ -42,6 +42,36 @@ function selectDuration(e) {
     
 }
 
+// Reset all input values
+function resetAll() {
+
+    // Get all tags
+    var bpmeasBox = document.getElementById('bpmeas');
+    var bpminBox = document.getElementById('bpmin');
+    var keys = document.querySelectorAll('.key');
+    var tensions = document.querySelectorAll('.tension');
+    var durations = document.querySelectorAll('.duration');
+    var random = document.getElementById("random");
+    var frequencies = document.querySelectorAll(".frequency");
+
+    // Reset all tags
+    bpmeasBox.value = "";
+    bpminBox.value = "";
+    random.value = "";
+    keys.forEach(key => {
+        key.style.backgroundColor = "";
+    });
+    tensions.forEach(tension => {
+        tension.style.backgroundColor = "";
+    });
+    durations.forEach(duration => {
+        duration.checked = false;
+    });
+    frequencies.forEach(frequency => {
+        frequency.value = "";
+    });
+
+}
 
 
 // -------------------
@@ -56,6 +86,7 @@ function randomizeAll () {
     randomSeed();
     randomBeatPerMinute();
     randomBeatPerMeasure();
+    randomFrequencies();
 }
 
 // Randomize key
@@ -89,6 +120,31 @@ function randomNoteDuration() {
     });
 }
 
+// Generate random frequencies
+// DOES NOT UPDATE BACKEND
+function randomFrequencies() {
+    var frequencies = document.querySelectorAll('.frequency');
+
+    frequencies.forEach(frequency => {
+        var checkbox = frequency.previousElementSibling.children[0];
+        if (checkbox.checked) {
+            if (checkbox.id == "chord" || checkbox.id == "32nd") {
+                frequency.value = Math.floor(Math.random()*4);
+            } else if (checkbox.id == "Sixteenth" || checkbox.id == "Eighth" || checkbox.id == "Quarter") {
+                frequency.value = Math.floor(Math.random()*8);
+            } else if (checkbox.id == "Half") {
+                frequency.value = Math.floor(Math.random()*3);
+            } else if (checkbox.id == "Whole") {
+                frequency.value = Math.floor(Math.random()*2);
+            }
+        } else {
+            checkbox.checked = false;
+            frequency.value = "";
+        }
+    });
+
+}
+
 // Generate random seed
 function randomSeed(e) {
     $.get('/random_seed', function (data) {
@@ -98,6 +154,7 @@ function randomSeed(e) {
 }
 
 // Generate random beats/measure
+// DOES NOT UPDATE BACKEND
 function randomBeatPerMeasure() {
     const beats_per_meas = [3, 4, 6, 8];
     var i = Math.floor(Math.random() * beats_per_meas.length)
@@ -107,11 +164,14 @@ function randomBeatPerMeasure() {
 }
 
 // Generate random beats/minute
+// DOES NOT UPDATE BACKEND
 function randomBeatPerMinute() {
     const beats_per_min = [60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 180, 200, 220];
     var i = Math.floor(Math.random() * beats_per_min.length)
     var box = document.getElementById("bpmin");
     box.value = beats_per_min[i];
 }
+
+
 
 

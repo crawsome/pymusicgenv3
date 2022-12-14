@@ -31,43 +31,43 @@
                         <input class="duration" type="checkbox" id="chord" name="Chord" value="" onclick="selectDuration(this)">
                         <label for="chord">Chord</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_chord" name="quantity" min="1" max="50">
         
                     <div>
                         <input class="duration" type="checkbox" id="32nd" name="32nd" value="" onclick="selectDuration(this)">
                         <label for="32nd">32nd</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_32nd" name="quantity" min="1" max="50">
               
                     <div>
-                        <input class="duration" type="checkbox" id="sixteenth" name="Sixteenth" value="" onclick="selectDuration(this)">
+                        <input class="duration" type="checkbox" id="Sixteenth" name="Sixteenth" value="" onclick="selectDuration(this)">
                         <label for="sixteenth">Sixteenth</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_sixteenth" name="quantity" min="1" max="50">
                     
                     <div>
                         <input class="duration" type="checkbox" id="Eighth" name="Eighth" value="" onclick="selectDuration(this)">
                         <label for="Eighth">Eighth</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_eighth" name="quantity" min="1" max="50">
 
                     <div>
                         <input class="duration" type="checkbox" id="Quarter" name="Quarter" value="" onclick="selectDuration(this)">
                         <label for="Quarter">Quarter</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_quarter" name="quantity" min="1" max="50">
                     
                     <div>
                         <input class="duration" type="checkbox" id="Half" name="Half" value="" onclick="selectDuration(this)">
                         <label for="Half">Half</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_half" name="quantity" min="1" max="50">
                     
                     <div>
                         <input class="duration" type="checkbox" id="Whole" name="Whole" value="" onclick="selectDuration(this)">
                         <label for="Whole">Whole</label>
                     </div>
-                    <input type="number" id="quantity" name="quantity" min="1" max="50">
+                    <input type="number" class="frequency freq_whole" name="quantity" min="1" max="50">
                 </div>
 
             </div>
@@ -91,7 +91,7 @@
 
                 <button>Generate!</button>
                 <button onclick="randomizeAll()">Randomize</button>
-                <button>Reset Selection</button>
+                <button onclick="resetAll()">Reset Selection</button>
             </div>
             <div class="box output">
                 <p class="box-name">Output Area</p>
