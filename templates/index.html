@@ -17,10 +17,10 @@
                 {% endfor %}
                 
             </div>
-            <div class="box tension">
+            <div class="box tensions">
                 <p class="box-name">Tension</p>
                 {% for tension in tensions %}
-                    <p class="note" onclick="selectNote(this)">{{ tension }}</p>
+                    <p class="tension" onclick="selectNote(this)">{{ tension }}</p>
                 {% endfor %}
             </div>
             <div class="box notes">
@@ -114,26 +114,6 @@
         
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-
-        // Handler to get random seed
-        $("button#random-seed").click(function() { 
-            $.get('/random_seed', function (data) {
-                var random = document.getElementById("random");
-                random.value = data;
-            });
-            // If you want to post to the backend instead, do
-            // $.post('/button');
-        });
-
-        function selectNote(e){
-            var notes = document.querySelectorAll('.note');
-            notes.forEach(note => {
-                note.style.backgroundColor = "";
-            });
-            e.style.backgroundColor = "white"
-        }
-
-    </script>
+    <script src="{{url_for('static', filename='musicgen.js')}}"></script>
 </body>
 </html>
