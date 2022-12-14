@@ -28,43 +28,43 @@
 
                 <div class="mini-grid">
                     <div>
-                        <input type="checkbox" id="chord" name="chord" value="">
+                        <input class="duration" type="checkbox" id="chord" name="Chord" value="" onclick="selectDuration(this)">
                         <label for="chord">Chord</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
         
                     <div>
-                        <input type="checkbox" id="32nd" name="32nd" value="">
+                        <input class="duration" type="checkbox" id="32nd" name="32nd" value="" onclick="selectDuration(this)">
                         <label for="32nd">32nd</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
               
                     <div>
-                        <input type="checkbox" id="sixteenth" name="sixteenth" value="">
+                        <input class="duration" type="checkbox" id="sixteenth" name="Sixteenth" value="" onclick="selectDuration(this)">
                         <label for="sixteenth">Sixteenth</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
                     
                     <div>
-                        <input type="checkbox" id="Eighth" name="Eighth" value="">
+                        <input class="duration" type="checkbox" id="Eighth" name="Eighth" value="" onclick="selectDuration(this)">
                         <label for="Eighth">Eighth</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
 
                     <div>
-                        <input type="checkbox" id="Quarter" name="Quarter" value="">
+                        <input class="duration" type="checkbox" id="Quarter" name="Quarter" value="" onclick="selectDuration(this)">
                         <label for="Quarter">Quarter</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
                     
                     <div>
-                        <input type="checkbox" id="Half" name="Half" value="">
+                        <input class="duration" type="checkbox" id="Half" name="Half" value="" onclick="selectDuration(this)">
                         <label for="Half">Half</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
                     
                     <div>
-                        <input type="checkbox" id="Whole" name="Whole" value="">
+                        <input class="duration" type="checkbox" id="Whole" name="Whole" value="" onclick="selectDuration(this)">
                         <label for="Whole">Whole</label>
                     </div>
                     <input type="number" id="quantity" name="quantity" min="1" max="50">
@@ -74,7 +74,7 @@
             <div class="box seed">
                 <p class="box-name">Seed (For RNG)</p>
                 <div class="center">
-                    <button id="random-seed" class="full-button">Random Seed</button>
+                    <button id="random-seed" class="full-button" onclick="randomSeed(this)">Random Seed</button>
                     <input type="text" id="random">
                 </div>
 
@@ -90,7 +90,7 @@
                 <p class="box-name">Generate/Randomize/Reset</p>
 
                 <button>Generate!</button>
-                <button>Randomize</button>
+                <button onclick="randomizeAll()">Randomize</button>
                 <button>Reset Selection</button>
             </div>
             <div class="box output">

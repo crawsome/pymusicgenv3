@@ -1,16 +1,6 @@
 
 
 
-// Handler to get random seed
-$("button#random-seed").click(function() { 
-    $.get('/random_seed', function (data) {
-        var random = document.getElementById("random");
-        random.value = data;
-    });
-    // If you want to post to the backend instead, do
-    // $.post('/button');
-});
-
 
 // Handler for handling when user selects a key
 function selectKey(e){
@@ -42,12 +32,65 @@ function selectTension(e){
     });
 }
 
+// Handler for selecting a note duration
+function selectDuration(e) {
+    // Update duration in backend
+    $.post('/select_duration', {'isActive':e.checked, 'name':e.name}, function (data) {
+        // Do nothing for now
+        
+    });
+    
+}
 
 
 // Randomize functions
 // -------------------
 
+// Main function to randomize all values 
+function randomizeAll () {
+    randomKey();
+    randomTension();
+    randomNoteDuration();
+    randomSeed();
+}
+
 // Randomize key
 function randomKey() {
-    var keys = document.querySelectorAll('.note')
+    var keys = document.querySelectorAll('.key');
+    var i = Math.floor(Math.random() * keys.length);
+
+    selectKey(keys.item(i));
 }
+
+// Randomize tension
+function randomTension() {
+    var tensions = document.querySelectorAll('.tension');
+    var i = Math.floor(Math.random() * tensions.length);
+
+    selectTension(tensions.item(i));
+}
+
+// Randomize note durations
+function randomNoteDuration() {
+    var durations = document.querySelectorAll('.duration');
+    durations.forEach(duration => {
+        var i = Math.random();
+        if (i > .5) {
+            duration.checked = true;
+            selectDuration(duration);
+        } else {
+            duration.checked = false;
+            selectDuration(duration);
+        }
+    });
+}
+
+// Generate random seed
+function randomSeed(e) {
+    $.get('/random_seed', function (data) {
+        var random = document.getElementById("random");
+        random.value = data;
+    });
+}
+
+

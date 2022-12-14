@@ -82,6 +82,17 @@ class PyMusicGen():
         self.key = None
         self.tension = None
         self.durations = []
+        # Dictionary containing, note types, whether that type is active in the current session, and it's frequency
+        # TODO: Incorporate this data into the weighted distribution of self.durations
+        self.durations_freq = {
+            "Chord":{ "isChecked":False, "frequency": 0},
+            "32nd":{ "isChecked":False, "frequency": 0},
+            "Sixteenth":{ "isChecked":False, "frequency": 0},
+            "Eighth":{ "isChecked":False, "frequency": 0},
+            "Quarter":{ "isChecked":False, "frequency": 0},
+            "Half":{ "isChecked":False, "frequency": 0},
+            "Whole":{ "isChecked":False, "frequency": 0}
+        }
 
         # seed for random (Set to something for testing)
         self.seed = None

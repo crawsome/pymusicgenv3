@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request 
+from flask import jsonify
 
 from musicstructs import *
 from pymusicgen import rotate, floatequal, MidiNote, Song, PyMusicGen
@@ -25,6 +26,15 @@ def update_key():
 def update_tension():
     musicGen.tension = request.form['tension']
     return str(musicGen.tension)
+
+# Update the status of the given note duration
+@app.route('/select_duration', methods=["POST"])
+def select_duration():
+    name = request.form['name']
+    active = request.form['isActive']
+    musicGen.durations_freq.get(name)['isChecked'] = active 
+
+    return jsonify({name: musicGen.durations_freq.get(name)})
 
 if __name__ == "__main__":
     musicGen = PyMusicGen()
