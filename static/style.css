@@ -73,7 +73,7 @@ label {
 .key:hover, .tension:hover {
     cursor: pointer;
     background-color: white;
-    padding: 3px;
+    
 }
 .third-button {
     width: 30%;
