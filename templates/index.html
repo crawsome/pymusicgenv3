@@ -13,14 +13,14 @@
             <div class="box key">
                 <p class="box-name">Key</p>
                 {% for note in notes %}
-                    <p class="note" onclick="selectNote(this)">{{ note }}</p>
+                    <p class="note" onclick="selectNote(this)" data-value="{{note}}">{{ note }}</p>
                 {% endfor %}
                 
             </div>
             <div class="box tensions">
                 <p class="box-name">Tension</p>
                 {% for tension in tensions %}
-                    <p class="tension" onclick="selectTension(this)">{{ tension }}</p>
+                    <p class="tension" onclick="selectTension(this)" data-value="{{tension}}">{{ tension }}</p>
                 {% endfor %}
             </div>
             <div class="box notes">

@@ -19,6 +19,12 @@ function selectNote(e){
         note.style.backgroundColor = "";
     });
     e.style.backgroundColor = "white"
+
+    // Update key in backend
+    $.post('/update_key', {"key":e.dataset.value}, function (data) {
+        // Do nothing for now
+        
+    });
 }
 
 // Handler for handling when user selects a tension
@@ -28,4 +34,10 @@ function selectTension(e){
         tension.style.backgroundColor = "";
     });
     e.style.backgroundColor = "white"
+
+    // Update key in backend
+    $.post('/update_tension', {"tension":e.dataset.value}, function (data) {
+        // Do nothing for now
+       
+    });
 }
