@@ -79,7 +79,7 @@ def select_duration():
     freq = request.form['frequency']
 
     musicGen.durations_freq[name]['checked'] = active 
-    musicGen.durations_freq[name]['frequency'] = freq 
+    musicGen.durations_freq[name]['frequency'] = int(freq) 
 
     return jsonify(musicGen.durations_freq)
 
