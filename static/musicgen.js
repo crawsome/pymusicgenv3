@@ -7,11 +7,14 @@ function generate() {
     updateBeatsPerMeasure();
     updateBeatsPerMinute();
     updateFrequencies();
+    updateRandomSeed();
 
     // Call generate function in backend
     $.post('/generate', {}, function (data) {
-        // Do nothing for now
-        console.log(data);
+        // If there was an error with the input data, show dialogue prompt
+        if (data != "Success") {
+            alert(data);
+        }
     });
 }
 
@@ -50,6 +53,15 @@ function updateBeatsPerMeasure() {
     $.post('/update_bpmeas', {"bpm":e.value}, function (data) {
         // Do nothing for now
         
+    });
+}
+
+// Update random seed
+function updateRandomSeed() {
+    var e = document.getElementById("random");
+    // Update beats per measure in backend
+    $.post('/random_seed', {"seed":e.value}, function (data) {
+        // Do nothing for now
     });
 }
 
@@ -107,9 +119,9 @@ function resetAll() {
     var frequencies = document.querySelectorAll(".frequency");
 
     // Reset all tags
-    bpmeasBox.value = "";
-    bpminBox.value = "";
-    random.value = "";
+    bpmeasBox.value = 0;
+    bpminBox.value = 0;
+    random.value = 0;
     keys.forEach(key => {
         key.style.backgroundColor = "";
     });
@@ -123,6 +135,11 @@ function resetAll() {
         frequency.value = 0;
     });
 
+    // Reset data in backend
+    $.post('/reset', function (data) {
+        // Do nothing for now
+
+    });
 }
 
 

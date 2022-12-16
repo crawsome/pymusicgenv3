@@ -14,10 +14,31 @@ def home():
 
 @app.route('/generate', methods=["POST"])
 def generate():
-    musicGen.new_measure()
+    result = musicGen.new_measure()
+    if result != True:
+        return result 
+
+    return "Success"
+    
+
+@app.route("/reset", methods=["POST"])
+def reset():
+    musicGen.durations_freq = {
+            "Chord":{ "checked":False, "frequency": 0},
+            "32nd":{ "checked":False, "frequency": 0},
+            "Sixteenth":{ "checked":False, "frequency": 0},
+            "Eighth":{ "checked":False, "frequency": 0},
+            "Quarter":{ "checked":False, "frequency": 0},
+            "Half":{ "checked":False, "frequency": 0},
+            "Whole":{ "checked":False, "frequency": 0}
+        }
+    musicGen.key = None
+    musicGen.tension = None 
+    musicGen.beatsperminute = None 
+    musicGen.beatspermeasure = None 
+    musicGen.seed = None 
 
     return ""
-
 
 @app.route("/update_frequencies", methods=["POST"])
 def update_frequencies():
@@ -32,12 +53,12 @@ def update_frequencies():
 
 @app.route("/update_bpmin", methods=["POST"])
 def update_bpmin():
-    musicGen.beatsperminute = request.form['bpm']
+    musicGen.beatsperminute = int(request.form['bpm'])
     return str(musicGen.beatsperminute)
 
 @app.route("/update_bpmeas", methods=["POST"])
 def update_bpmeas():
-    musicGen.beatspermeasure = request.form['bpm']
+    musicGen.beatspermeasure = int(request.form['bpm'])
     return str(musicGen.beatspermeasure)
 
 @app.route('/update_key', methods=["POST"])
@@ -62,10 +83,15 @@ def select_duration():
 
     return jsonify(musicGen.durations_freq)
 
-@app.route("/random_seed")
+@app.route("/random_seed", methods=["GET","POST"])
 def random_seed():
-    musicGen.random_seed()
-    return str(musicGen.seed)
+    if request.method == "GET":
+        musicGen.random_seed()
+        return str(musicGen.seed)
+
+    if request.method == "POST":
+        musicGen.seed = int(request.form['seed'])
+        return str(musicGen.seed)
 
 if __name__ == "__main__":
     musicGen = PyMusicGen()

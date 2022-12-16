@@ -462,10 +462,33 @@ class PyMusicGen():
 
     # runs all the above at once
     def check_fields(self):
-        msg = self.check_key_field() + self.check_tension_field() + self.check_checkboxes() + \
-              self.check_spinboxes() + self.check_seedbox_field() + self.check_bpmeasure_field() + \
-              self.check_bpminute_field()
-        return msg
+        msg = ""
+        checked = [self.durations_freq[note]['checked'] for note in self.durations_freq]
+        for  note in self.durations_freq:
+            if self.durations_freq[note]['checked'] and self.durations_freq[note]['frequency'] == 0:
+                msg += "Please input positive note frequencies\n"
+                break
+
+
+        if True not in checked:
+            msg += "Please select some notes\n" 
+        if self.beatspermeasure == None or self.beatspermeasure == 0:
+            msg += "Please input beats/measure\n"
+        if self.beatsperminute == None or self.beatsperminute == 0:
+            msg += "Please input beats/minute\n"
+        if self.key == None:
+            msg += "Please select a key\n"
+        if self.tension == None:
+            msg += "Please select a tension\n"
+        if self.seed == None or self.seed == 0:
+            msg += "Please input a random seed\n"
+
+
+        if len(msg) > 0:
+            return msg
+        else:
+            return True
+        
 
     # Music Theory
 
@@ -627,12 +650,10 @@ class PyMusicGen():
 
     # Make a measure with the given data
     def new_measure(self):
-        # # Check the data and pass error to the user
-        # msg = None
-        # try:
-        #     msg = self.check_fields()
-        # except Exception as e:
-        #     logging.exception('check_fields() failed: ' + str(e))
+        # Check the data and pass error to the user
+        val = self.check_fields()
+        if val != True:
+            return val
 
         # if msg:
         #     self.popup_window(msg)
@@ -668,6 +689,7 @@ class PyMusicGen():
         #                                               self.beatspermeasure))))
         #     logging.exception('show measure failed ' + str(e))
 
+        return True
     # get range difference between two notes
     def getrangecount(self, a, b):
         return abs(self.toneref[a] - self.toneref[b])
