@@ -93,6 +93,10 @@ class PyMusicGen():
             "Half":{ "checked":False, "frequency": 0},
             "Whole":{ "checked":False, "frequency": 0}
         }
+        
+        self.measure_note_str = ""
+        self.measure_duration_str  = ""
+        self.measure_title_str = ""
 
         # seed for random (Set to something for testing)
         self.seed = None
@@ -141,24 +145,25 @@ class PyMusicGen():
 
     # Display the measure to the output label (WIP)
     def show_measure(self, blank=False):
-        measure_note_str = 'Position: {} / Length: {}\n\n'.format(self.song_index + 1, len(self.song.measures))
+        measure_title_str = 'Position: {} / Length: {}\n\n'.format(self.song_index + 1, len(self.song.measures))
         if blank:
-            self.outputlabel.setText(measure_note_str)
-            return
+            return measure_title_str
 
         try:
-            measure_note_str += '\t'.join([str(intref[i - self.c1]) for i in self.thismeasure_notes])
+            measure_note_str = [str(intref[i - self.c1]) for i in self.thismeasure_notes]
         except Exception as e:
             logging.exception('measure_note_str failed ' + str(e))
             logging.exception(self.thismeasure_notes)
 
         try:
-            measure_duration_str = '\t'.join([timeref[i] for i in self.thismeasure_times])
+            measure_duration_str = [timeref[i] for i in self.thismeasure_times]
         except Exception as e:
             logging.exception('measure_duration_str failed ' + str(e))
 
         try:
-            self.outputlabel.setText(measure_note_str + '\n' + measure_duration_str)
+            self.measure_note_str = measure_note_str
+            self.measure_duration_str = measure_duration_str
+            self.measure_title_str = measure_title_str
         except Exception as e:
             logging.exception('outputlabel.setText failed ' + str(e))
 
@@ -680,14 +685,14 @@ class PyMusicGen():
             logging.exception('make_notetimes() failed: ' + str(e))
 
         # Display the measure on the screen
-        # try:
-        #     self.show_measure()
-        # except Exception as e:
-        #     logging.exception('{} {}'.format(self.thismeasure_notes, len(self.thismeasure_notes)))
-        #     logging.exception('{} {} \n{}'.format(self.thismeasure_times, len(self.thismeasure_times),
-        #                                           (str(sum(self.thismeasure_times)) + 'should equal' + str(
-        #                                               self.beatspermeasure))))
-        #     logging.exception('show measure failed ' + str(e))
+        try:
+            self.current_measure_str = self.show_measure()
+        except Exception as e:
+            logging.exception('{} {}'.format(self.thismeasure_notes, len(self.thismeasure_notes)))
+            logging.exception('{} {} \n{}'.format(self.thismeasure_times, len(self.thismeasure_times),
+                                                  (str(sum(self.thismeasure_times)) + 'should equal' + str(
+                                                      self.beatspermeasure))))
+            logging.exception('show measure failed ' + str(e))
 
         return True
     # get range difference between two notes

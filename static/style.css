@@ -62,6 +62,16 @@ label {
     padding: 3px 5px 3px 5px;
 }
 
+.note_output, .dur_output  {
+    word-spacing: 1em;
+    width:90%;
+    text-align: center;
+}
+.measure-item {
+    padding:0px 5px 0px 5px;
+}
+
+
 
 .key, .tension {
     background-color: ;

@@ -15,10 +15,17 @@ def home():
 @app.route('/generate', methods=["POST"])
 def generate():
     result = musicGen.new_measure()
-    if result != True:
-        return result 
 
-    return "Success"
+    if result != True:
+        return jsonify({"measure_notes":musicGen.measure_note_str,
+                        "measure_dur":musicGen.measure_duration_str,
+                        "measure_title":musicGen.measure_title_str,
+                        "error_msg":result}) 
+
+    return jsonify({"measure_notes":musicGen.measure_note_str,
+                    "measure_dur":musicGen.measure_duration_str,
+                    "measure_title":musicGen.measure_title_str,
+                    "error_msg":""})
     
 
 @app.route("/reset", methods=["POST"])
