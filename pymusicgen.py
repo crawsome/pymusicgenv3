@@ -33,7 +33,7 @@ mixer.set_num_channels(64)
 
 # init MyMidi
 MyMIDI = MIDIFile(1)
-
+measureMIDI = MIDIFile(1)
 
 # Return array that is rotated circular
 
@@ -167,37 +167,70 @@ class PyMusicGen():
         except Exception as e:
             logging.exception('outputlabel.setText failed ' + str(e))
 
+    def save_measure(self):
+        filename = "static/cur_measure.mid"
+        try:
+            measureMIDI.addTempo(track=0, time=0, tempo=self.beatsperminute)
+            running_time = 0.0
+            print(f"NOTES: {self.thismeasure_notes}")
+            for note, note_length in zip(self.thismeasure['notes'],self.thismeasure['times']):
+                measureMIDI.addNote(track=0, channel=0, pitch=note, time=running_time, duration=note_length,
+                               volume=100)
+                running_time += note_length
+        except Exception as e:
+            logging.exception('failed to parse midi metadata: ' + str(e))
+
+
+        try:
+            if os.path.exists(filename):
+                os.remove(filename)
+
+            with open(filename, 'wb') as output_file:
+                measureMIDI.writeFile(output_file)
+        except Exception as e:
+            logging.exception('failed to save file: ' + str(e))
+
+
+        print("saved current measure . . .")
+        return
+    
     # saves song to file
     def save_song(self):
-        filename = ''
-        try:
-            # create our save file dialog
-            qf = QtWidgets.QFileDialog(self)
+        # filename = ''
+        # try:
+        #     # create our save file dialog
+        #     qf = QtWidgets.QFileDialog(self)
 
-            # Show user file dialog, Make the file save as a .midi
-            filename = qf.getSaveFileName(None, 'Save Song as Midi', '', 'Midi Files (*.mid)')[0]
+        #     # Show user file dialog, Make the file save as a .midi
+        #     filename = qf.getSaveFileName(None, 'Save Song as Midi', '', 'Midi Files (*.mid)')[0]
 
-            if not filename:  # if they hit cancel
-                return
-        except Exception as e:
-            logging.exception('save GUI failed: ' + str(e))
-
+        #     if not filename:  # if they hit cancel
+        #         return
+        # except Exception as e:
+        #     logging.exception('save GUI failed: ' + str(e))
+        filename = "static/song.mid"
         try:
             MyMIDI.addTempo(track=0, time=0, tempo=self.beatsperminute)
             running_time = 0.0
             for measure in self.song.measures:
-                for note, note_length in zip(*measure):
+                for note, note_length in zip(measure['notes'],measure['times']):
                     MyMIDI.addNote(track=0, channel=0, pitch=note, time=running_time, duration=note_length,
                                    volume=100)
                     running_time += note_length
         except Exception as e:
             logging.exception('failed to parse midi metadata: ' + str(e))
 
+
         try:
+            if os.path.exists(filename):
+                os.remove(filename)
             with open(filename, 'wb') as output_file:
                 MyMIDI.writeFile(output_file)
         except Exception as e:
             logging.exception('failed to save file: ' + str(e))
+
+
+        print("saved song . . .")
         return
 
     # saves song to pdf
@@ -606,6 +639,7 @@ class PyMusicGen():
 
     # Fills an n=#sleeps array with notes from that scale that hopefully travel well.
     def make_measure(self): #TODO different starting notes per measure, resolution, travel, motifs, markov chains
+
         self.thismeasure_times = []
         while float(sum(self.thismeasure_times)) < float(self.beatspermeasure):
             nexttime = random.choice(self.durations)
@@ -647,6 +681,7 @@ class PyMusicGen():
                 self.thismeasure_notes.append(nextjump)
                 i -= 1
         self.thismeasure = {'notes': self.thismeasure_notes, 'times': self.thismeasure_times}
+        
 
     # sets a random seed for user
     def random_seed(self):
@@ -655,6 +690,8 @@ class PyMusicGen():
 
     # Make a measure with the given data
     def new_measure(self):
+        measureMIDI = MIDIFile(1)
+        
         # Check the data and pass error to the user
         val = self.check_fields()
         if val != True:
@@ -694,6 +731,7 @@ class PyMusicGen():
                                                       self.beatspermeasure))))
             logging.exception('show measure failed ' + str(e))
 
+        self.save_measure()
         return True
     # get range difference between two notes
     def getrangecount(self, a, b):

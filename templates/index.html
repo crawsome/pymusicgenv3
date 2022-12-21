@@ -102,20 +102,23 @@
             <div class="box controls">
                 <p class="box-name">Controls</p>
                 <div class="center">
-                    <button class="third-button">Play Song</button>
+                    <button class="third-button" onclick="playSong()">Play Song</button>
                     <button class="third-button">Insert Measure into Song</button>
                     <button class="third-button">Delete Measure from Song</button>
                     
                     <br>
 
                     <button class="third-button"><- Back One Measure</button>
-                    <button class="third-button">Play Measure</button>
+                    <button class="third-button" onclick="playMeasure()">Play Measure</button>
                     <button class="third-button">Forward One Measure -></button>
                 </div>
             </div>
         </div>
+        <midi-player style="display:;" id="player" src="" soundfont="https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"></midi-player>
         
     </div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
+    <meta kudos="https://github.com/cifkao/html-midi-player">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{{url_for('static', filename='musicgen.js')}}"></script>
 </body>

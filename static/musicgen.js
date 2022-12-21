@@ -15,7 +15,7 @@ function generate() {
         // Reset output area
         var items = document.querySelectorAll('.measure-item');
         items.forEach(item => item.remove());
-        
+
         // If there was an error with the input data, show dialogue prompt
         if (data['error_msg'].length > 0){
             alert(data['error_msg']);
@@ -24,18 +24,29 @@ function generate() {
             var measure_title = document.querySelector('.measure_title');
             measure_title.textContent = data['measure_title'];
             
-            console.log(data)
+            //console.log(data)
             for (var i = 0; i < data['measure_notes'].length; i++) {
                 measure_output.innerHTML += `<div class='measure-item'><p>${data['measure_notes'][i]}</p><p>${data['measure_dur'][i]}</p></div>`;
             }
-            
-
         }
-        
-
     });
 }
 
+// Play song
+function playSong() {
+    var player = document.getElementById('player');
+    player.src = "static/tmp.mid";
+    player.start();
+    
+}
+
+// Play measure
+function playMeasure() {
+    var player = document.getElementById('player');
+    player.src = "static/cur_measure.mid";
+    player.start();
+    
+}
 
 // Update note frequencies in backend
 function updateFrequencies() {
