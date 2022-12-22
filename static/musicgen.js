@@ -28,8 +28,14 @@ function generate() {
             for (var i = 0; i < data['measure_notes'].length; i++) {
                 measure_output.innerHTML += `<div class='measure-item'><p>${data['measure_notes'][i]}</p><p>${data['measure_dur'][i]}</p></div>`;
             }
+
+            // update midi src
+            var player = document.getElementById('player');
+            player.src = "static/cur_measure.mid";
         }
     });
+
+    
 }
 
 // Play song
@@ -42,8 +48,6 @@ function playSong() {
 
 // Play measure
 function playMeasure() {
-    var player = document.getElementById('player');
-    player.src = "static/cur_measure.mid";
     player.start();
     
 }

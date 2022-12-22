@@ -169,6 +169,7 @@ class PyMusicGen():
 
     def save_measure(self):
         filename = "static/cur_measure.mid"
+        measureMIDI = MIDIFile(1)
         try:
             measureMIDI.addTempo(track=0, time=0, tempo=self.beatsperminute)
             running_time = 0.0
@@ -187,6 +188,8 @@ class PyMusicGen():
 
             with open(filename, 'wb') as output_file:
                 measureMIDI.writeFile(output_file)
+
+            measureMIDI.close()
         except Exception as e:
             logging.exception('failed to save file: ' + str(e))
 
@@ -690,8 +693,7 @@ class PyMusicGen():
 
     # Make a measure with the given data
     def new_measure(self):
-        measureMIDI = MIDIFile(1)
-        
+
         # Check the data and pass error to the user
         val = self.check_fields()
         if val != True:
