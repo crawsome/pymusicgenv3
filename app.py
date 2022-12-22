@@ -6,6 +6,7 @@ from flask import jsonify
 from musicstructs import *
 from pymusicgen import rotate, floatequal, MidiNote, Song, PyMusicGen
 
+musicGen = PyMusicGen()
 app = Flask(__name__)
 
 @app.route("/")
@@ -101,5 +102,4 @@ def random_seed():
         return str(musicGen.seed)
 
 if __name__ == "__main__":
-    musicGen = PyMusicGen()
     app.run(debug=True)
